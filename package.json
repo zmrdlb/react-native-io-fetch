@@ -1,0 +1,28 @@
+{
+  "name": "react-native-io-fetch",
+  "version": "1.0.0",
+  "description": "react native fetch io api",
+  "main": "index.js",
+  "scripts": {
+    "interstart": "node listdata.js",
+    "test": "echo \"由于node暂不支持一些新的Web API接口，如Request，所以请参考model.js里的io使用配置，以及test.js里面的使用demo，放到react-native环境下测试. 先运行mpm run interstart启动接口。\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zmrdlb/react-native-io-fetch.git"
+  },
+  "keywords": [],
+  "author": {
+    "name": "zmrdlb",
+    "email": "592044573@qq.com"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zmrdlb/react-native-io-fetch/issues"
+  },
+  "homepage": "https://github.com/zmrdlb/react-native-io-fetch#readme",
+  "dependencies": {
+    "extend": "^3.0.0",
+    "querystring": "^0.2.0"
+  }
+}
