@@ -73,19 +73,46 @@ that.ioparams = {
         //Alert.alert('系统消息',error.message || '亲，忙不过来了');
     },
     /**
-     * 如果fail配置了funname为fail,则调用此方法
+     * 如果fail配置了funname为fail,则调用此方法. 此时fail.filter返回true
+     * @param {Object|Other} result 接口返回数据
+     * @param {Response} response 返回的response对象
      * @return {[type]} [description]
      */
     fail: function(result,response){
         //Alert.alert('系统消息',result.errmsg || '亲，忙不过来了');
     },
+    /**
+     * 成功调用方法。调用的情况有如下几种：
+     * 1. dealfail为true, 则fail.filter返回false时，调用success
+     *          此时如果dealdata为true, 则result为dealdatafun返回的数据
+     * 2. dealfail为false时，则接口返回后直接调用此方法（不发生error的情况下）
+     *
+     * @param {Object|Other} result 接口返回数据
+     * @param {Response} response 返回的response对象
+     */
     success: function(result,response){},
+    /**
+     * 接口请求完毕调用。无论success,fail,error
+     * @return {[type]} [description]
+     */
     complete: function(){},
-
+    /**
+     * 如果dealdata为true, 则success的result为此方法返回的数据
+     * @param {Object|Other} result 接口返回数据
+     * @return {[type]}        [description]
+     */
     dealdatafun: function(result){return result.data},
-
+    /**
+     * 是否统一处理业务错误
+     * @type {Boolean}
+     */
     dealfail: true, //是否统一处理业务错误
-    dealdata: true //如果dealfail为true,并且fail.filter返回为false时，如果此项设置为true,则调用dealdatafun方法，返回处理后的数据
+    /**
+     * 当业务成功时，调用success前，是否统一格式化数据
+     * 如果dealfail为true,并且fail.filter返回为false时，如果此项设置为true,则调用dealdatafun方法，返回处理后的数据
+     * @type {Boolean}
+     */
+    dealdata: true
 };
 
 export default that;
