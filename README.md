@@ -22,7 +22,8 @@ npm install react-native-io-fetch --save
 
 - 运行react-native项目，执行里test.js中拷贝的代码，查看结果。
 
-＃ API说明
+
+# API说明
 
 ## IoConfig
 
