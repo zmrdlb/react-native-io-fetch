@@ -156,3 +156,7 @@ Io.request({...}) 参数格式同 IoConfig.ioparams
 - 参考model.js添加项目io接口配置
 
 - 参考test.js，如何使用model.js里面的接口
+
+# 实例
+
+请参考[zmrdlb react-native-demo](https://github.com/zmrdlb/react-native-demo/tree/master/AwesomeProject) 中的common/model.js和page/list.js
