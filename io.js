@@ -60,7 +60,7 @@ export default {
             })
         ]);
         race.then(function(response){
-            if(response.ok) {
+            if(response.ok) { //response.status [200,299]
                 response[conf.type]().then(function(result){
                     if(conf.dealfail){ //处理业务错误
                         if(IoConfig.fail.filter(result)){ //有业务错误发生
@@ -79,7 +79,7 @@ export default {
                     conf.error(error);
                 });
             }else{
-                conf.error({message: '系统错误'});
+                conf.error({message: response.statusText || '网络错误'});
             }
             conf.complete();
         }).catch(function(error){
