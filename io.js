@@ -5,6 +5,30 @@ import IoConfig from './ioconfig';
 const extend = require('extend');
 const querystring = require('querystring');
 
+/**
+ * 将data格式化成FormData
+ * @param  {JSON} data [description]
+ * @return {FormData}      [description]
+ */
+function formatFormData(data){
+    var _formdata = new FormData();
+    data = Object.entries(data);
+    for(var pair of data){
+        var [key, val] = pair;
+        if(val == undefined){
+            continue;
+        }else if(val.constructor == Array){
+            val.forEach((v,i) => {
+                _formdata.append(key,v);
+            });
+            continue;
+        }else{
+            _formdata.append(key,val);
+        }
+    }
+    return _formdata;
+}
+
 export default {
     /**
      * 发起io请求
@@ -17,25 +41,29 @@ export default {
             return;
         }
         var conf = {};
-        if(ioparams.data == undefined || ioparams.data.constructor === Object){
-            conf.headers = {
-                'Content-Type': 'application/x-www-form-urlencoded',
-                'charset': 'UTF-8'
-            };
-        }
 
         extend(true,conf,IoConfig.ioparams,ioparams);
 
+        conf.request.method = conf.request.method.toUpperCase();
+
         //检测ioparams里的data
-        var iodata = body = conf.data;
-        if(iodata && iodata.constructor === Object){
-             body = querystring.stringify(iodata);
+        var body = conf.data, _method = conf.request.method;
+
+        if(body && body.constructor === Object){ //说明data是json
+            if(_method != 'GET' && _method != 'HEAD' && conf.isformdata){
+                body = formatFormData(body);
+            }else{
+                body = querystring.stringify(body);
+                if(conf.headers['Content-Type'] == undefined){
+                    conf.headers['Content-Type'] = 'application/x-www-form-urlencoded';
+                }
+            }
+
         }
 
         //赋值request.body
-        conf.request.method = conf.request.method.toUpperCase();
         if(body){
-            switch(conf.request.method){
+            switch(_method){
                 case 'GET':
                     if(typeof body == 'string'){
                         conf.url += '?'+body.toString();

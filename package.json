@@ -23,6 +23,7 @@
   "homepage": "https://github.com/zmrdlb/react-native-io-fetch#readme",
   "dependencies": {
     "extend": "^3.0.0",
+    "multiparty": "^4.1.2",
     "querystring": "^0.2.0"
   }
 }

@@ -23,6 +23,7 @@
      * @type {Object}
      */
     headers: {
+        'charset': 'UTF-8'
     },
     /**
      * 请求对象参数配置
@@ -50,9 +51,17 @@ that.ioparams = {
      * FormData
      * URLSearchParams
      * USVString
-     * JSON: 如果是json, (则转化成URLSearchParams,暂时不支持URLSearchParams) 则转化成querystring
+     * String
+     * JSON: 如果是json, 则做特殊处理，请见下面isformdata的说明
      */
     // data: {},
+    /**
+     * 如果data是json:
+     *  1. request.method不是GET或HEAD, 且isformdata为true, 那么将data转换成FormData格式;
+     *  2. 如果不符合第1种，则默认添加headers: Content-Type: application/x-www-form-urlencoded(用户可覆盖)，并且将data转换成querystring
+     * @type {Boolean}
+     */
+    isformdata: false,
     url: '', //请求url地址
     /**
      * 请求的数据类型，默认为json. 数据类型和reponse对象返回获取结果的方法对应关系如下
