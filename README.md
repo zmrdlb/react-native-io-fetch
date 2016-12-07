@@ -42,9 +42,17 @@ io接口请求配置：此处封装了io请求默认配置
      * FormData
      * URLSearchParams
      * USVString
-     * JSON: 如果是json, (则转化成URLSearchParams,暂时不支持URLSearchParams) 则转化成querystring
+     * String
+     * JSON: 如果是json, 则做特殊处理，请见下面isformdata的说明
      */
-    data: {},
+    // data: {},
+    /**
+     * 如果data是json:
+     *  1. request.method不是GET或HEAD, 且isformdata为true, 那么将data转换成FormData格式;
+     *  2. 如果不符合第1种，则默认添加headers: Content-Type: application/x-www-form-urlencoded(用户可覆盖)，并且将data转换成querystring
+     * @type {Boolean}
+     */
+    isformdata: false,
     url: '', //请求url地址
     /**
      * 请求的数据类型，默认为json. 支持的数据类型有如下几种
@@ -128,10 +136,8 @@ IoConfig.fail = {
 ````
 
 - IoConfig.headers: 请求头部配置[Headers](https://developer.mozilla.org/zh-CN/docs/Web/API/Headers)
-如果'io请求参数'的data是JSON格式，则headers默认是：
 ```
 {
-      'Content-Type': 'application/x-www-form-urlencoded',
       'charset': 'UTF-8'
 }
 ```
