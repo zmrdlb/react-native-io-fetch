@@ -48,8 +48,8 @@ io接口请求配置：此处封装了io请求默认配置
     // data: {},
     /**
      * 如果data是json:
-     *  1. request.method不是GET或HEAD, 且isformdata为true, 那么将data转换成FormData格式;
-     *  2. 如果不符合第1种，则默认添加headers: Content-Type: application/x-www-form-urlencoded(用户可覆盖)，并且将data转换成querystring
+     *  1. request.method不是GET或HEAD, 且isformdata为true, 那么将data转换成FormData格式
+     *  2. 如果不符合第1种，将data转换成querystring
      * @type {Boolean}
      */
     isformdata: false,
@@ -145,7 +145,8 @@ IoConfig.fail = {
 - IoConfig.headers: 请求头部配置[Headers](https://developer.mozilla.org/zh-CN/docs/Web/API/Headers)
 ```
 {
-     
+     //如果Content-Type设置为false,则不传Content-Type
+     'Content-Type': 'application/x-www-form-urlencoded'
 }
 ```
 
