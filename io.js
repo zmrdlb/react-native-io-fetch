@@ -81,6 +81,9 @@ export default {
         conf.request.headers = conf.headers;
         var myrequest = new Request(conf.url,conf.request);
 
+        //请求发起前统一处理
+        conf.beforeSend();
+
         var race = Promise.race([
             fetch(myrequest),
             new Promise(function(resolve,reject){

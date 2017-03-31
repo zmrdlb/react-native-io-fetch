@@ -23,7 +23,7 @@
      * @type {Object}
      */
     headers: {
-        // 'charset': 'UTF-8'
+
     },
     /**
      * 请求对象参数配置
@@ -31,9 +31,15 @@
      */
     request: {
         method: 'GET', //GET|POST
-        mode: 'cors' //cors|no-cors|same-origin|navigate
+        mode: 'cors', //cors|no-cors|same-origin|navigate
         //其他参数
         //body: credentials: cache: redirect: referrer: integrity
+        /**
+         * same-origin: 同ajax一样，同域发送cookie
+         * include: 跨域发送cookie
+         * @type {String}
+         */
+        credentials: 'same-origin'
     }
 };
 
