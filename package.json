@@ -10,7 +10,7 @@
     "type": "git",
     "url": "git+https://github.com/zmrdlb/react-native-io-fetch.git"
   },
-  "keywords": [],
+  "keywords": ["fetch","react native"],
   "author": {
     "name": "zmrdlb",
     "email": "592044573@qq.com"
