@@ -23,7 +23,8 @@
      * @type {Object}
      */
     headers: {
-
+        //如果Content-Type设置为false,则不传Content-Type
+        'Content-Type': 'application/x-www-form-urlencoded'
     },
     /**
      * 请求对象参数配置
@@ -63,8 +64,8 @@ that.ioparams = {
     // data: {},
     /**
      * 如果data是json:
-     *  1. request.method不是GET或HEAD, 且isformdata为true, 那么将data转换成FormData格式;
-     *  2. 如果不符合第1种，则默认添加headers: Content-Type: application/x-www-form-urlencoded(用户可覆盖)，并且将data转换成querystring
+     *  1. request.method不是GET或HEAD, 且isformdata为true, 那么将data转换成FormData格式
+     *  2. 如果不符合第1种，将data转换成querystring
      * @type {Boolean}
      */
     isformdata: false,

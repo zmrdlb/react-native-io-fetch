@@ -52,13 +52,14 @@ export default {
         if(body && body.constructor === Object){ //说明data是json
             if(_method != 'GET' && _method != 'HEAD' && conf.isformdata){
                 body = formatFormData(body);
+                delete conf.headers['Content-Type'];
             }else{
                 body = querystring.stringify(body);
-                if(conf.headers['Content-Type'] == undefined){
-                    conf.headers['Content-Type'] = 'application/x-www-form-urlencoded';
-                }
             }
+        }
 
+        if(conf.headers['Content-Type'] === false){
+            delete conf.headers['Content-Type'];
         }
 
         //赋值request.body
