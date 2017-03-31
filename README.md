@@ -65,6 +65,13 @@ io接口请求配置：此处封装了io请求默认配置
     type: 'json',
     timeout: 6000, //接口超时时间
     /**
+     * io请求前，统一的处理
+     * @return {[type]} [description]
+     */
+    beforeSend: function(){
+
+    },
+    /**
      * 对于接口返回错误，一般因为网络原因，进行的统一处理
      */
     error: function(error){
@@ -138,7 +145,7 @@ IoConfig.fail = {
 - IoConfig.headers: 请求头部配置[Headers](https://developer.mozilla.org/zh-CN/docs/Web/API/Headers)
 ```
 {
-      'charset': 'UTF-8'
+     
 }
 ```
 
@@ -146,9 +153,15 @@ IoConfig.fail = {
 ```
 {
         method: 'GET', //GET|POST
-        mode: 'cors' //cors|no-cors|same-origin|navigate
+        mode: 'cors', //cors|no-cors|same-origin|navigate
         //其他参数
         //body: credentials: cache: redirect: referrer: integrity
+        /**
+         * same-origin: 同ajax一样，同域发送cookie
+         * include: 跨域发送cookie
+         * @type {String}
+         */
+        credentials: 'same-origin'
 }
 ```
 
