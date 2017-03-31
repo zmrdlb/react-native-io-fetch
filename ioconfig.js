@@ -23,7 +23,7 @@
      * @type {Object}
      */
     headers: {
-        'charset': 'UTF-8'
+        // 'charset': 'UTF-8'
     },
     /**
      * 请求对象参数配置
@@ -74,6 +74,13 @@ that.ioparams = {
      */
     type: 'json',
     timeout: 6000,
+    /**
+     * io请求前，统一的处理
+     * @return {[type]} [description]
+     */
+    beforeSend: function(){
+
+    },
     /**
      * 对于接口返回错误，一般因为网络原因，进行的统一处理
      */

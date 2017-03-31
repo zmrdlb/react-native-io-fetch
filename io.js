@@ -104,13 +104,15 @@ export default {
                         conf.success(result,response);
                     }
                 },function(error){
-                    conf.error(error);
+                    throw error;
                 });
             }else{
-                conf.error({message: response.statusText || '网络错误'});
+                var error = new Error(response.statusText || '网络错误')
+                throw error;
             }
             conf.complete();
         }).catch(function(error){
+            //捕获任何错误，即发生语法错误也会捕获
             conf.error(error);
             conf.complete();
         });

@@ -5,9 +5,17 @@ const multiparty  = require('multiparty');
 
 var requestCount = 0;
 
+function writeHead(res){
+    res.setHeader('Charset','utf-8');
+    res.setHeader('Access-Control-Allow-Origin','*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+}
+
 function writeempty(res) {
+    writeHead(res);
     res.setHeader('Content-Type','text/plain');
-    res.writeHead(200);
+    res.writeHead(404,'not found');
     res.end('');
 }
 
@@ -20,12 +28,13 @@ function writeres(res){
         });
         rowIndex++;
     }
+    writeHead(res);
     res.setHeader('Content-Type','application/json');
     res.writeHead(200, 'ok');
     res.end(JSON.stringify({
         code: 'A0001',
-        data: dataBlob
-        //errmsg: '接口返回的错误信息'
+        data: dataBlob,
+        errmsg: '接口返回的错误信息'
     }),'utf8');
 }
 
@@ -42,7 +51,7 @@ http.createServer((req,res) => {
                 console.log(`第${requestCount}次请求`);
 
                 var contentType = req.headers['content-type'];
-
+                console.log(req.headers);
                 if(/multipart\/form-data/.test(contentType)){ //说明是FormData
                     console.log('multipart/form-data');
                     var form = new multiparty.Form();

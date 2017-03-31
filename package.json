@@ -4,7 +4,7 @@
   "description": "react native fetch io api",
   "main": "index.js",
   "scripts": {
-    "interstart": "node listdata.js"
+    "interstart": "node iointer.js"
   },
   "repository": {
     "type": "git",
